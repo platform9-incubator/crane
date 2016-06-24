@@ -12,7 +12,7 @@ Following will initalize a container for you with the content of the 'node_base'
 ```
 #!bash
 
-crane init github.com/platform9/node_base
+crane init --src github.com/platform9/node_base
 ```
 
 After the initialization you are running into the container, work as you please in the newly created container, creating and deleting files as needed.

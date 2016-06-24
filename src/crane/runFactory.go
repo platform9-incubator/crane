@@ -5,17 +5,12 @@ import (
 	"github.com/mitchellh/cli"
 	"flag"
 	"os/exec"
-	"fmt"
-	"github.com/BurntSushi/toml"
 )
 
 type RunCommand struct {
 	Ui cli.Ui
 }
 
-type CraneEnv struct {
-	Cmd string
-}
 
 // The three interface functions
 
@@ -47,12 +42,9 @@ func (c *RunCommand) Run(args []string) int {
 	c.Ui.Output("Fetching the git repo")
 
 	if src != "" {
-		cmd := exec.Command("git", "clone", src, dest)
-		err := cmd.Run()
-		if err != nil {
-			c.Ui.Error(err.Error())
-			return 1
-		}
+        if _,err := clone_repo(src, dest); err != nil {
+            return 1
+        }
 	}
 
 	if local != "" {
@@ -76,13 +68,10 @@ func (c *RunCommand) Run(args []string) int {
 	}
 
 	c.Ui.Output("Analyzing .crane.env")
-	var craneEnv CraneEnv
-	_, err := toml.DecodeFile(fmt.Sprintf("%s/.crane.env", dest), &craneEnv)
-	if err != nil {
-		c.Ui.Error(err.Error())
-		c.Ui.Error("Can't parse the .crane.env in the git repository")
-		return 1
-	}
+    envCmd,err := extract_env_cmd(dest)
+    if err != nil {
+        return 1
+    }
 
 	c.Ui.Output("Creating a temporary image")
 	cmd := exec.Command("tar", "-C", dest, "-cvf", tmp_tar, "./")
@@ -103,13 +92,13 @@ func (c *RunCommand) Run(args []string) int {
 
 	c.Ui.Output("Running the container")
 	if portmap != "" {
-		cmd = exec.Command("docker", "run", "-p", portmap, "crane_image", craneEnv.Cmd)
+		cmd = exec.Command("docker", "run", "-p", portmap, "crane_image", envCmd)
 	} else {
-		cmd = exec.Command("docker", "run", "crane_image", craneEnv.Cmd)
+		cmd = exec.Command("docker", "run", "crane_image", envCmd)
 	}
 	err = cmd.Run()
 	if err != nil {
-		c.Ui.Error("Can't import docker file")
+		c.Ui.Error("Can't run container")
 		return 1
 	}
 	c.Ui.Output("Docker container running")
