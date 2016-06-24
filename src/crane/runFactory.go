@@ -19,6 +19,7 @@ func (c *RunCommand) Run(args []string) int {
 	var tag string
 	var portmap string
 	var local string
+	var name string
 
 	tmp_tar := "/tmp/temp.tar"
 	dest := "/tmp/test"
@@ -29,6 +30,7 @@ func (c *RunCommand) Run(args []string) int {
 	cmdFlags.StringVar(&local, "local", "", "Local repo")
 	cmdFlags.StringVar(&tag, "tag", "", "Optional tag to run from")
 	cmdFlags.StringVar(&portmap, "port", "", "Port mapping")
+	cmdFlags.StringVar(&name, "name", "", "Name of image and container")
 
 	if err := cmdFlags.Parse(args); err != nil {
 		c.Ui.Error("Can't parse command line")
@@ -36,9 +38,14 @@ func (c *RunCommand) Run(args []string) int {
 	}
 
 	if src == "" && local == "" {
-		c.Ui.Error("Please specify src")
+		c.Ui.Error("Please specify src or local")
 		return 1
 	}
+	if name == "" {
+		c.Ui.Error("Please specify a name")
+		return 1
+	}
+	
 	c.Ui.Output("Fetching the git repo")
 
 	if src != "" {
@@ -83,7 +90,7 @@ func (c *RunCommand) Run(args []string) int {
 
 	c.Ui.Output("Importing image")
 
-	cmd = exec.Command("docker", "import", tmp_tar, "crane_image")
+	cmd = exec.Command("docker", "import", tmp_tar, name)
 	err = cmd.Run()
 	if err != nil {
 		c.Ui.Error("Can't import docker file")
@@ -92,9 +99,9 @@ func (c *RunCommand) Run(args []string) int {
 
 	c.Ui.Output("Running the container")
 	if portmap != "" {
-		cmd = exec.Command("docker", "run", "-p", portmap, "crane_image", envCmd)
+		cmd = exec.Command("docker", "run", "--name", name, "-p", portmap, name, envCmd)
 	} else {
-		cmd = exec.Command("docker", "run", "crane_image", envCmd)
+		cmd = exec.Command("docker", "run", "--name", name,  name, envCmd)
 	}
 	err = cmd.Run()
 	if err != nil {
