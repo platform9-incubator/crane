@@ -2,23 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="124e9780-0e82-478c-b5dd-81abfbed1def" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pkg/darwin_amd64/github.com/google/go-querystring/query.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/github.com/google/go-github" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/github.com/google/go-querystring" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gopkg.in/urfave/cli.v2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/webServers.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pkg/darwin_amd64/github.com/google/go-github/github.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pkg/darwin_amd64/gopkg.in/urfave/cli.v2.a" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/crane" afterPath="$PROJECT_DIR$/bin/crane" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crane.go" afterPath="$PROJECT_DIR$/crane.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkg/darwin_amd64/crane.a" afterPath="$PROJECT_DIR$/pkg/darwin_amd64/crane.a" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkg/darwin_amd64/github.com/BurntSushi/toml.a" afterPath="$PROJECT_DIR$/pkg/darwin_amd64/github.com/BurntSushi/toml.a" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/crane/convertFactory.go" afterPath="$PROJECT_DIR$/src/crane/convertFactory.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/crane/initFactory.go" afterPath="$PROJECT_DIR$/src/crane/initFactory.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/crane/runFactory.go" afterPath="$PROJECT_DIR$/src/crane/runFactory.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/crane/utils.go" afterPath="$PROJECT_DIR$/src/crane/utils.go" />
     </list>
     <ignored path="crane.iws" />
@@ -44,7 +31,7 @@
       <file leaf-file-name="crane.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/crane.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
+            <state relative-caret-position="0">
               <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
               <folding />
             </state>
@@ -54,7 +41,7 @@
       <file leaf-file-name="runFactory.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/crane/runFactory.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
+            <state relative-caret-position="0">
               <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
               <folding />
             </state>
@@ -74,9 +61,11 @@
       <file leaf-file-name="initFactory.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/crane/initFactory.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="47" column="34" selection-start-line="47" selection-start-column="34" selection-end-line="47" selection-end-column="35" />
-              <folding />
+            <state relative-caret-position="1305">
+              <caret line="87" column="18" selection-start-line="87" selection-start-column="18" selection-end-line="87" selection-end-column="18" />
+              <folding>
+                <element signature="e#15#190#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -84,8 +73,8 @@
       <file leaf-file-name="utils.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/crane/utils.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="70" column="23" selection-start-line="70" selection-start-column="23" selection-end-line="70" selection-end-column="23" />
+            <state relative-caret-position="315">
+              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -94,7 +83,7 @@
       <file leaf-file-name="convertFactory.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/crane/convertFactory.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="0">
               <caret line="28" column="17" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
               <folding />
             </state>
@@ -121,6 +110,7 @@
         <option value="$PROJECT_DIR$/crane.go" />
         <option value="$PROJECT_DIR$/src/crane/gitHelper.go" />
         <option value="$PROJECT_DIR$/src/crane/runFactory.go" />
+        <option value="$PROJECT_DIR$/src/crane/utils.go" />
         <option value="$PROJECT_DIR$/src/crane/initFactory.go" />
       </list>
     </option>
@@ -192,7 +182,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="reference.settings.deploy.options" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Go" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="configurable.Global.libraries.is.expanded" value="true" />
@@ -422,7 +412,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -454,7 +446,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#15#190#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -494,7 +488,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="860">
           <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
-          <folding />
+          <folding>
+            <element signature="e#15#190#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -508,7 +504,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/crane/convertFactory.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="0">
           <caret line="28" column="17" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
           <folding />
         </state>
@@ -516,7 +512,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/crane.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
+        <state relative-caret-position="0">
           <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
           <folding />
         </state>
@@ -532,7 +528,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/crane/runFactory.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
+        <state relative-caret-position="0">
           <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
           <folding />
         </state>
@@ -540,17 +536,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/crane/utils.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="70" column="23" selection-start-line="70" selection-start-column="23" selection-end-line="70" selection-end-column="23" />
+        <state relative-caret-position="315">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gopkg.in/urfave/cli.v2/command.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/crane/initFactory.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="47" column="34" selection-start-line="47" selection-start-column="34" selection-end-line="47" selection-end-column="35" />
-          <folding />
+        <state relative-caret-position="1305">
+          <caret line="87" column="18" selection-start-line="87" selection-start-column="18" selection-end-line="87" selection-end-column="18" />
+          <folding>
+            <element signature="e#15#190#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

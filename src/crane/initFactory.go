@@ -6,7 +6,7 @@ import (
   //"github.com/google/go-github/github"
   "os/exec"
   "io/ioutil"
-  "regexp"
+  //"regexp"
   //"strings"
   //"os"
 )
@@ -50,18 +50,15 @@ func initMain(c *cli.Context) error {
     cli.ShowCommandHelp(c, "init")
 
   }
-  cmd := exec.Command("ps", "-e", "-o", "command")
-  psResults,err := cmd.Output()
-  r, _ := regexp.Compile("docker-containerd -l \"(.+)\"")
-  socketForCtr := r.FindString(string(psResults))
-  fmt.Println(socketForCtr)
-
-  return nil
-
+  //cmd := exec.Command("ps", "-e", "-o", "command")
+  //psResults,err := cmd.Output()
+  //r, _ := regexp.Compile("docker-containerd -l \"(.+)\"")
+  //socketForCtr := r.FindString(string(psResults))
+  //fmt.Println(socketForCtr)
 
   crane_dir,err := cranetainer_path()
   if err != nil {
-    cli.Exit("Something bad happened while trying to walk the path", 2)
+    errorExit("Something bad happened while trying to walk the path", "")
   }
   fmt.Println("Found a directory!")
   fmt.Println(crane_dir)
@@ -83,7 +80,21 @@ func initMain(c *cli.Context) error {
     fmt.Println("Amazing!! Cloned successfully!!")
   }
 
-  cmd := exec.Command("docker-runc", )
+
+  cmd = exec.Command("docker-runc", "spec")
+  err = cmd.Run()
+  if err != nil {
+    fmt.Println("Can't find docker-runc")
+    cli.OsExiter(2)
+    return nil
+  }
+
+  cmd := exec.Command("mv", "config.json", fmt.Sprintf("%s/%s/%s", crane_dir, containerName, "config.json"))
+  err = cmd.Run()
+  if err != nil {
+    errorExit("Can't move file into %s", containerName)
+  }
+
 
   fmt.Println(src)
   fmt.Println(containerName)

@@ -63,6 +63,7 @@ func clone_repo(url string, dest_path string, mkdir bool) (bool, error) {
 
 
 func cranetainer_path() (string, error) {
+  fmt.Println("Finding cranetainers path")
   var dir string
   usr,err := user.Current()
   if err != nil {
