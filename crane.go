@@ -1,39 +1,37 @@
 package main
 
 import (
-	"log"
 	"os"
-	"github.com/mitchellh/cli"
-	"crane"
+	"gopkg.in/urfave/cli.v2" // imports as package "cli"
+  "crane"
+  "time"
 )
 
+
 func main() {
+  app := &cli.App{
+    Version: "v0.0.1",
+    Compiled: time.Now(),
+    Authors: []*cli.Author{
+      &cli.Author{
+        Name:  "Roopak Parikh",
+        Email: "rparikh@platform9.com",
+      },
+      &cli.Author{
+        Name:  "Joshua Hurt",
+        Email: "josh@platform9.com",
+      },
+    },
+    EnableBashCompletion: true,
+    BashComplete: func(c *cli.Context) {
+      cli.ShowCompletions(c)
+    },
+    Commands: []*cli.Command{
+      crane.InitCommand(),
+      crane.RunCommand(),
+      crane.ConvertCommand(),
+    },
+  }
 
-	c := cli.NewCLI("crane", "0.1.0")
-	ui := &cli.BasicUi{Writer: os.Stdout}
-	c.Args = os.Args[1:]
-	c.Commands = map[string]cli.CommandFactory{
-		"convert" : func() (cli.Command, error) {
-			return &crane.ConvertCommand{
-				Ui: ui,
-			}, nil
-		},
-		"init" : func() (cli.Command, error) {
-			return &crane.InitCommand{
-				Ui: ui,
-			}, nil
-		},
-		"run" : func() (cli.Command, error) {
-			return &crane.RunCommand{
-				Ui: ui,
-			}, nil
-		},
-	}
-
-	exitStatus, err := c.Run()
-	if err != nil {
-		log.Println(err)
-	}
-
-	os.Exit(exitStatus)
+  app.Run(os.Args)
 }

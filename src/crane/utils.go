@@ -1,10 +1,15 @@
 package crane
 
 import (
-    "os"
-    "os/exec"
-    "fmt"
-    "github.com/BurntSushi/toml"
+  "io/ioutil"
+  "os/user"
+  "os"
+  "os/exec"
+  "fmt"
+  "github.com/BurntSushi/toml"
+  //"path/filepath"
+  "strings"
+  "gopkg.in/urfave/cli.v2"
 )
 
 type CraneEnv struct {
@@ -34,15 +39,48 @@ func extract_env_cmd(dir_path string) (string, error) {
     return craneEnv.Cmd, err
 }
 
-func clone_repo(url string, dest_path string) (bool, error) {
-    if _,err := dir_exists(dest_path); err != nil {
-        return false, err
+
+func clone_repo(url string, dest_path string, mkdir bool) (bool, error) {
+  if _,err := dir_exists(dest_path); err != nil {
+    if ! mkdir {
+      return false, err
     }
-    cmd := exec.Command("git", "clone", url, dest_path)
-    err := cmd.Run()
+    fileInfo,err := os.Lstat("/Users/josh/cranetainers")
     if err != nil {
-        return false, err
+      return false, err
     }
-    return true, err
+    if err = os.MkdirAll(dest_path, fileInfo.Mode()); err != nil {
+      return false, err
+    }
+  }
+  cmd := exec.Command("git", "clone", url, dest_path)
+  err := cmd.Run()
+  if err != nil {
+    return false, err
+  }
+  return true, err
 }
 
+
+func cranetainer_path() (string, error) {
+  var dir string
+  usr,err := user.Current()
+  if err != nil {
+    return "", err
+  }
+  homeDirs,err := ioutil.ReadDir(usr.HomeDir)
+  if err != nil {
+    return "", err
+  }
+  for _,file := range homeDirs {
+    if strings.Contains(file.Name(), "cranetainer") {
+      dir = usr.HomeDir + "/" + file.Name()
+    }
+  }
+  return dir, nil
+}
+
+func errorExit(format string, a ...interface{}) {
+  fmt.Printf(format, a)
+  cli.OsExiter(2)
+}
