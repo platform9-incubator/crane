@@ -1,39 +1,54 @@
 package main
 
 import (
-	"log"
 	"os"
-	"github.com/mitchellh/cli"
+	"gopkg.in/urfave/cli.v2" // imports as package "cli"
+  "time"
 	"crane"
 )
 
+type exit struct {
+	Code int
+}
+
 func main() {
-
-	c := cli.NewCLI("crane", "0.1.0")
-	ui := &cli.BasicUi{Writer: os.Stdout}
-	c.Args = os.Args[1:]
-	c.Commands = map[string]cli.CommandFactory{
-		"convert" : func() (cli.Command, error) {
-			return &crane.ConvertCommand{
-				Ui: ui,
-			}, nil
+	// We want our defer functions to be run when calling fatal()
+	defer func() {
+		if e := recover(); e != nil {
+			if ex, ok := e.(exit); ok == true {
+				os.Exit(ex.Code)
+			}
+			panic(e)
+		}
+	}()
+  app := &cli.App{
+    Version: "v0.0.1",
+    Compiled: time.Now(),
+		Flags: []cli.Flag {
+			&cli.StringFlag{
+				Name: "conn-timeout",
+				Value: "60",
+			},
 		},
-		"init" : func() (cli.Command, error) {
-			return &crane.InitCommand{
-				Ui: ui,
-			}, nil
-		},
-		"run" : func() (cli.Command, error) {
-			return &crane.RunCommand{
-				Ui: ui,
-			}, nil
-		},
-	}
-
-	exitStatus, err := c.Run()
-	if err != nil {
-		log.Println(err)
-	}
-
-	os.Exit(exitStatus)
+    Authors: []*cli.Author{
+      &cli.Author{
+        Name:  "Roopak Parikh",
+        Email: "rparikh@platform9.com",
+      },
+      &cli.Author{
+        Name:  "Joshua Hurt",
+        Email: "josh@platform9.com",
+      },
+    },
+    EnableBashCompletion: true,
+    BashComplete: func(c *cli.Context) {
+      cli.ShowCompletions(c)
+    },
+    Commands: []*cli.Command{
+			crane.InitCommand,
+			crane.RunCommand,
+			crane.ConvertCommand,
+    },
+  }
+  app.Run(os.Args)
 }
